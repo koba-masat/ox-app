@@ -15,8 +15,8 @@ with pyvirtualcam.Camera(width=frame.shape[1], height=frame.shape[0], fps=30) as
 
         # 色空間を変更
         # αチャンネルを有効にして，RGB順にする
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
-
+        # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+        print(frame)
         # 画像を仮想カメラに流す
         cam.send(frame)
 
