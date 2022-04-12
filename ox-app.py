@@ -63,13 +63,13 @@ def tkButton():
                           repeatdelay=1, repeatinterval=10)
     down_button = tk.Button(root, text="down", command=down,
                             repeatdelay=1, repeatinterval=10)
-    maru_button.pack()
-    batsu_button.pack()
-    nashi_button.pack()
-    right_button.place(x=250, y=30, width=60, height=20)
-    left_button.place(x=170, y=30, width=60, height=20)
-    up_button.place(x=210, y=10, width=60, height=20)
-    down_button.place(x=210, y=50, width=60, height=20)
+    maru_button.grid(row=1, column=1)
+    batsu_button.grid(row=2, column=1)
+    nashi_button.grid(row=3, column=1)
+    right_button.grid(row=2, column=5)
+    left_button.grid(row=2, column=3)
+    up_button.grid(row=1, column=4)
+    down_button.grid(row=3, column=4)
     root.mainloop()
 
 
