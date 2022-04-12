@@ -51,7 +51,7 @@ def down():
 
 def tkButton():
     root = tk.Tk()
-    root.geometry("350x200")
+    root.geometry("300x150")
     maru_button = tk.Button(root, text="まる", command=maru)
     batsu_button = tk.Button(root, text="ばつ", command=batsu)
     nashi_button = tk.Button(root, text="なし", command=nashi)
@@ -63,13 +63,13 @@ def tkButton():
                           repeatdelay=1, repeatinterval=10)
     down_button = tk.Button(root, text="down", command=down,
                             repeatdelay=1, repeatinterval=10)
-    maru_button.grid(row=1, column=1)
-    batsu_button.grid(row=2, column=1)
-    nashi_button.grid(row=3, column=1)
-    right_button.grid(row=2, column=5)
-    left_button.grid(row=2, column=3)
-    up_button.grid(row=1, column=4)
-    down_button.grid(row=3, column=4)
+    maru_button.grid(row=1, column=1, padx=50, pady=5, columnspan=2, rowspan=2)
+    batsu_button.grid(row=4, column=1, padx=50, pady=5, columnspan=2, rowspan=2)
+    nashi_button.grid(row=6, column=1, padx=50, pady=5, columnspan=2, rowspan=2)
+    right_button.grid(row=4, column=10, pady=5, columnspan=2, rowspan=2)
+    left_button.grid(row=4, column=6, pady=5, columnspan=2, rowspan=2)
+    up_button.grid(row=1, column=8, pady=5, columnspan=2, rowspan=2)
+    down_button.grid(row=6, column=8, pady=5, columnspan=2, rowspan=2)
     root.mainloop()
 
 
