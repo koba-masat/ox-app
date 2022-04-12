@@ -28,6 +28,7 @@ def nashi():
     global mark
     mark = ""
 
+
 def right():
     global x_offset
     x_offset += 1
@@ -54,17 +55,21 @@ def tkButton():
     maru_button = tk.Button(root, text="まる", command=maru)
     batsu_button = tk.Button(root, text="ばつ", command=batsu)
     nashi_button = tk.Button(root, text="なし", command=nashi)
-    right_button = tk.Button(root, text="right", command=right, repeatdelay=1, repeatinterval=10)
-    left_button = tk.Button(root, text="left", command=left, repeatdelay=1, repeatinterval=10)
-    up_button = tk.Button(root, text="up", command=up, repeatdelay=1, repeatinterval=10)
-    down_button = tk.Button(root, text="down", command=down, repeatdelay=1, repeatinterval=10)
-    maru_button.pack()
-    batsu_button.pack()
-    nashi_button.pack()
-    right_button.pack()
-    left_button.pack()
-    up_button.pack()
-    down_button.pack()
+    right_button = tk.Button(
+        root, text="right", command=right, repeatdelay=1, repeatinterval=10)
+    left_button = tk.Button(root, text="left", command=left,
+                            repeatdelay=1, repeatinterval=10)
+    up_button = tk.Button(root, text="up", command=up,
+                          repeatdelay=1, repeatinterval=10)
+    down_button = tk.Button(root, text="down", command=down,
+                            repeatdelay=1, repeatinterval=10)
+    maru_button.grid(row=1, column=1)
+    batsu_button.grid(row=2, column=1)
+    nashi_button.grid(row=3, column=1)
+    right_button.grid(row=2, column=5)
+    left_button.grid(row=2, column=3)
+    up_button.grid(row=1, column=4)
+    down_button.grid(row=3, column=4)
     root.mainloop()
 
 
