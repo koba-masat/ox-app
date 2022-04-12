@@ -28,7 +28,6 @@ def nashi():
     global mark
     mark = ""
 
-
 def right():
     global x_offset
     x_offset += 1
@@ -51,7 +50,7 @@ def down():
 
 def tkButton():
     root = tk.Tk()
-    root.geometry("350x100")
+    root.geometry("350x200")
     maru_button = tk.Button(root, text="まる", command=maru)
     batsu_button = tk.Button(root, text="ばつ", command=batsu)
     nashi_button = tk.Button(root, text="なし", command=nashi)
@@ -84,14 +83,18 @@ with pyvirtualcam.Camera(width=frame.shape[1], height=frame.shape[0], fps=30) as
 
         if mark == "maru":
             marubatsu_array = maru_array
-            # x_offset = int((frame.shape[1]-marubatsu_array.shape[1])/2)
-            # y_offset = 80
-            frame[y_offset: y_offset + marubatsu_array.shape[0],
-                  x_offset: x_offset + marubatsu_array.shape[1]] = marubatsu_array
         elif mark == "batsu":
             marubatsu_array = batsu_array
-            # x_offset = int((frame.shape[1]-marubatsu_array.shape[1])/2)
-            # y_offset = 80
+
+        if mark == "maru" or mark == "batsu":
+            if x_offset < 0:
+                x_offset = 0
+            if x_offset+marubatsu_array.shape[1] > frame.shape[1]:
+                x_offset = frame.shape[1] - marubatsu_array.shape[1]
+            if y_offset < 0:
+                y_offset = 0
+            if y_offset+marubatsu_array.shape[0] > frame.shape[0]:
+                y_offset = frame.shape[0] - marubatsu_array.shape[0]
             frame[y_offset: y_offset + marubatsu_array.shape[0],
                   x_offset: x_offset + marubatsu_array.shape[1]] = marubatsu_array
 
