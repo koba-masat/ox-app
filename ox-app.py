@@ -9,11 +9,29 @@ cap = cv2.VideoCapture(0)
 # 最初のフレームから画像のサイズを取得
 ret, frame = cap.read()
 
+mark = "baaaatsu"
+
+def maru():
+    global mark
+    mark = "maru"
+
+def batsu():
+    global mark
+    mark = "batsu"
+
+def nashi():
+    global mark
+    mark = ""
 
 def tkButton():
     root = tk.Tk()
-
     root.geometry("350x100")
+    maru_button = tk.Button(root, text="まる", command=maru)
+    batsu_button = tk.Button(root, text="ばつ", command=batsu)
+    nashi_button = tk.Button(root, text="なし", command=nashi)
+    maru_button.pack()
+    batsu_button.pack()
+    nashi_button.pack()
     root.mainloop()
 
 
@@ -23,10 +41,8 @@ thread1.start()
 with pyvirtualcam.Camera(width=frame.shape[1], height=frame.shape[0], fps=30) as cam:
     maru_array = cv2.imread("figure/mark_maru.png")
     batsu_array = cv2.imread("figure/mark_batsu.png")
-
-
-    if not marubatsu_array:
-        marubatsu_array = cv2.resize(marubatsu_array, dsize=(100, 100))
+    maru_array = cv2.resize(maru_array, dsize=(100, 100))
+    batsu_array = cv2.resize(batsu_array, dsize=(100, 100))
 
     while True:
         # 各フレームの画像を取得
@@ -36,19 +52,14 @@ with pyvirtualcam.Camera(width=frame.shape[1], height=frame.shape[0], fps=30) as
             marubatsu_array = maru_array
             x_offset = int((frame.shape[1]-marubatsu_array.shape[1])/2)
             y_offset = 80
-
-        frame[y_offset: y_offset + marubatsu_array.shape[0],
-              x_offset: x_offset + marubatsu_array.shape[1]] = marubatsu_array
+            frame[y_offset: y_offset + marubatsu_array.shape[0],
+                x_offset: x_offset + marubatsu_array.shape[1]] = marubatsu_array
         elif mark == "batsu":
             marubatsu_array = batsu_array
             x_offset = int((frame.shape[1]-marubatsu_array.shape[1])/2)
             y_offset = 80
-
-        frame[y_offset: y_offset + marubatsu_array.shape[0],
-              x_offset: x_offset + marubatsu_array.shape[1]] = marubatsu_array
-        else:
-            marubatsu_array =
-
+            frame[y_offset: y_offset + marubatsu_array.shape[0],
+                x_offset: x_offset + marubatsu_array.shape[1]] = marubatsu_array
 
         frame = np.flip(frame, 2)
         # 画像を仮想カメラに流す
