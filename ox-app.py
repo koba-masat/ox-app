@@ -13,11 +13,13 @@ with pyvirtualcam.Camera(width=frame.shape[1], height=frame.shape[0], fps=30) as
         # 各フレームの画像を取得
         ret, frame = cap.read()
 
-        for y in range(maru_array.shape[0]):
-            for x in range(maru_array.shape[1]):
-                for i in range(3):
-                    frame[y][x][i] = maru_array[y][x][i]
-                    
+        # for y in range(maru_array.shape[0]):
+        #     for x in range(maru_array.shape[1]):
+        #         for i in range(3):
+        #             frame[y][x][i] = maru_array[y][x][i]
+        x_offset = 0
+        y_offset = 0
+        frame[y_offset: y_offset+ maru_array.shape[0], x_offset: x_offset+ maru_array.shape[1]] = maru_array
         frame = np.flip(frame,2)
         # 画像を仮想カメラに流す
         cam.send(frame)
