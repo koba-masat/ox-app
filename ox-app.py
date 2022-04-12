@@ -7,21 +7,18 @@ cap = cv2.VideoCapture(0)
 # 最初のフレームから画像のサイズを取得
 ret, frame = cap.read()
 with pyvirtualcam.Camera(width=frame.shape[1], height=frame.shape[0], fps=30) as cam:
-    print(frame.shape[1])
+    maru_array = cv2.imread("figure/mark_maru.png")
+    batsu_array = cv2.imread("figure/mark_batsu.png")
     while True:
         # 各フレームの画像を取得
         ret, frame = cap.read()
-        maru_array = cv2.imread("figure/mark_maru.png")
-        batsu_array = cv2.imread("figure/mark_batsu.png")
 
-        # ここで何らかのエフェクトをかける
-
-        # 色空間を変更
-        # αチャンネルを有効にして，RGB順にする
-        # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
-        # frame = frame.reverse()
+        for y in range(maru_array.shape[0]):
+            for x in range(maru_array.shape[1]):
+                for i in range(3):
+                    frame[y][x][i] = maru_array[y][x][i]
+                    
         frame = np.flip(frame,2)
-        print(frame)
         # 画像を仮想カメラに流す
         cam.send(frame)
 
