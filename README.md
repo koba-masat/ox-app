@@ -6,6 +6,10 @@
 pip install -r requirements.txt
 ```
 
+## OBS Studioをインストールする
+
+- [OBS Studio](https://obsproject.com/ja/download) をインストールする
+
 ## 仮想カメラ用のobs-virtualsource.dllを有効にする
 
 1. コマンドプロンプトを管理者として実行する
