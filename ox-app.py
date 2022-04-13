@@ -1,7 +1,6 @@
 import cv2
 import pyvirtualcam
 import numpy as np
-import tkinter as tk
 import threading as th
 
 # import ox-tkinter
@@ -30,11 +29,11 @@ with pyvirtualcam.Camera(width=frame.shape[1], height=frame.shape[0], fps=30) as
         # 各フレームの画像を取得
         ret, frame = cap.read()
 
-        if mark == "maru":
-            marubatsu_array = maru_array
-        elif mark == "batsu":
-            marubatsu_array = batsu_array
+        marubatsu_array = controller.mark_chage(maru_array, batsu_array)
 
+        controller.move_mark(
+            frame.shape[1] - marubatsu_array.shape[1], frame.shape[0] - marubatsu_array.shape[0])
+            
         if mark == "maru" or mark == "batsu":
             if x_offset < 0:
                 x_offset = 0

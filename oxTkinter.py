@@ -1,48 +1,38 @@
-class Controller:
-    mark=""
-    x_offset=100
-    y_offset=100
+import tkinter as tk
 
-    def __init__(self,mark="",x_offset=100,y_offset=100):
-      self.mark = mark
-      self.x_offset=x_offset
-      self.y_offset=y_offset
-  
+
+class Controller:
+    mark = ""
+    x_offset = 100
+    y_offset = 100
+
+    def __init__(self, mark="", x_offset=100, y_offset=100):
+        self.mark = mark
+        self.x_offset = x_offset
+        self.y_offset = y_offset
+
     def maru(self):
         self.mark = "maru"
 
-
     def batsu(self):
-        # global mark
         self.mark = "batsu"
 
-
     def nashi(self):
-        # global mark
         self.mark = ""
 
-
     def right(self):
-        # global x_offset
         self.x_offset += 1
 
-
     def left(self):
-        # global x_offset
         self.x_offset -= 1
 
-
     def up(self):
-        # global y_offset
         self.y_offset -= 1
 
-
     def down(self):
-        # global y_offset
         self.y_offset += 1
 
-
-    def tkButton():
+    def tkButton(self):
         root = tk.Tk()
         root.geometry("300x150")
         maru_button = tk.Button(root, text="まる", command=maru)
@@ -56,7 +46,8 @@ class Controller:
                               repeatdelay=1, repeatinterval=10)
         down_button = tk.Button(root, text="down", command=down,
                                 repeatdelay=1, repeatinterval=10)
-        maru_button.grid(row=1, column=1, padx=50, pady=5, columnspan=2, rowspan=2)
+        maru_button.grid(row=1, column=1, padx=50,
+                         pady=5, columnspan=2, rowspan=2)
         batsu_button.grid(row=4, column=1, padx=50,
                           pady=5, columnspan=2, rowspan=2)
         nashi_button.grid(row=6, column=1, padx=50,
@@ -67,5 +58,10 @@ class Controller:
         down_button.grid(row=6, column=8, pady=5, columnspan=2, rowspan=2)
         root.mainloop()
 
-    def mark_chage(mark):
-        return array
+    def mark_chage(self, maru_array, batsu_array):
+        if self.mark == "maru":
+            return maru_array
+        elif self.mark == "batsu":
+            return batsu_array
+
+    def move_mark(self, after_x_offset,)
