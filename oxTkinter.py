@@ -66,3 +66,6 @@ class Controller:
         up_button.grid(row=1, column=8, pady=5, columnspan=2, rowspan=2)
         down_button.grid(row=6, column=8, pady=5, columnspan=2, rowspan=2)
         root.mainloop()
+
+    def mark_chage(mark):
+        return array
