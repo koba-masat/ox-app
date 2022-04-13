@@ -3,7 +3,7 @@ import pyvirtualcam
 import numpy as np
 import tkinter as tk
 import threading as th
-
+#testmiran
 # import ox-tkinter
 from oxTkinter import Controller
 
