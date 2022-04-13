@@ -31,18 +31,8 @@ with pyvirtualcam.Camera(width=frame.shape[1], height=frame.shape[0], fps=30) as
 
         marubatsu_array = controller.mark_chage(maru_array, batsu_array)
 
-        controller.move_mark(
-            frame.shape[1] - marubatsu_array.shape[1], frame.shape[0] - marubatsu_array.shape[0])
-            
-        if mark == "maru" or mark == "batsu":
-            if x_offset < 0:
-                x_offset = 0
-            if x_offset+marubatsu_array.shape[1] > frame.shape[1]:
-                x_offset = frame.shape[1] - marubatsu_array.shape[1]
-            if y_offset < 0:
-                y_offset = 0
-            if y_offset+marubatsu_array.shape[0] > frame.shape[0]:
-                y_offset = frame.shape[0] - marubatsu_array.shape[0]
+        if controller.can_move([frame.shape[0], frame.shape[1]],
+                             [marubatsu_array.shape[0], marubatsu_array.shape[1]]):
             frame[y_offset: y_offset + marubatsu_array.shape[0],
                   x_offset: x_offset + marubatsu_array.shape[1]] = marubatsu_array
 

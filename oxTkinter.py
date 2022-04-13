@@ -64,4 +64,7 @@ class Controller:
         elif self.mark == "batsu":
             return batsu_array
 
-    def move_mark(self, after_x_offset,)
+    def can_move(self, frame_shape, mark_shape):
+        upper_left = [self.x_offset, self.y_offset]
+        lower_right = [self.x_offset + mark_shape[0], self.y_offset + mark_shape[1]]
+        upper_left[0] < 0 or upper_left[1] < 0
