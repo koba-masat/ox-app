@@ -11,10 +11,7 @@ cap = cv2.VideoCapture(0)
 # 最初のフレームから画像のサイズを取得
 ret, frame = cap.read()
 
-mark = "baaaatsu"
-x_offset = 100
-y_offset = 100
-controller = Controller(mark, x_offset, y_offset)
+controller = Controller()
 
 thread1 = th.Thread(target=controller.tkButton)
 thread1.start()
@@ -30,11 +27,13 @@ with pyvirtualcam.Camera(width=frame.shape[1], height=frame.shape[0], fps=30) as
         ret, frame = cap.read()
 
         marubatsu_array = controller.mark_chage(maru_array, batsu_array)
+        print(controller.mark)
+
         if controller.mark == "maru" or controller.mark == "batsu":
             if controller.can_move([frame.shape[0], frame.shape[1]],
                                 [marubatsu_array.shape[0], marubatsu_array.shape[1]]):
-                frame[y_offset: y_offset + marubatsu_array.shape[0],
-                    x_offset: x_offset + marubatsu_array.shape[1]] = marubatsu_array
+                frame[controller.y_offset: controller.y_offset + marubatsu_array.shape[0],
+                    controller.x_offset: controller.x_offset + marubatsu_array.shape[1]] = marubatsu_array
 
         frame = np.flip(frame, 2)
         # 画像を仮想カメラに流す

@@ -6,10 +6,8 @@ class Controller:
     x_offset = 100
     y_offset = 100
 
-    def __init__(self, mark="", x_offset=100, y_offset=100):
-        self.mark = mark
-        self.x_offset = x_offset
-        self.y_offset = y_offset
+    def __init__(self):
+        pass
 
     def maru(self):
         self.mark = "maru"
@@ -67,6 +65,7 @@ class Controller:
             return False
 
     def can_move(self, frame_shape, mark_shape):
-        upper_left = [self.x_offset, self.y_offset]
-        lower_right = [self.x_offset + mark_shape[0], self.y_offset + mark_shape[1]]
+        upper_left = [self.y_offset, self.x_offset]
+        lower_right = [self.y_offset + mark_shape[0],
+                       self.x_offset + mark_shape[1]]
         return upper_left[0] < 0 or upper_left[1] < 0 or lower_right[0] > frame_shape[0] or lower_right[1] > frame_shape[1]
