@@ -19,10 +19,10 @@ class Controller:
         self.mark = ""
 
     def right(self):
-        self.x_offset += 1
+        self.x_offset -= 1
 
     def left(self):
-        self.x_offset -= 1
+        self.x_offset += 1
 
     def up(self):
         self.y_offset -= 1
