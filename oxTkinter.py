@@ -68,4 +68,4 @@ class Controller:
         upper_left = [self.y_offset, self.x_offset]
         lower_right = [self.y_offset + mark_shape[0],
                        self.x_offset + mark_shape[1]]
-        return upper_left[0] < 0 or upper_left[1] < 0 or lower_right[0] > frame_shape[0] or lower_right[1] > frame_shape[1]
+        return upper_left[0] >= 0 and upper_left[1] >= 0 and lower_right[0] <= frame_shape[0] and lower_right[1] <= frame_shape[1]
