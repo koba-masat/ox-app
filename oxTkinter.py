@@ -35,16 +35,16 @@ class Controller:
     def tkButton(self):
         root = tk.Tk()
         root.geometry("300x150")
-        maru_button = tk.Button(root, text="まる", command=maru)
-        batsu_button = tk.Button(root, text="ばつ", command=batsu)
-        nashi_button = tk.Button(root, text="なし", command=nashi)
+        maru_button = tk.Button(root, text="まる", command=self.maru)
+        batsu_button = tk.Button(root, text="ばつ", command=self.batsu)
+        nashi_button = tk.Button(root, text="なし", command=self.nashi)
         right_button = tk.Button(
-            root, text="right", command=right, repeatdelay=1, repeatinterval=10)
-        left_button = tk.Button(root, text="left", command=left,
+            root, text="right", command=self.right, repeatdelay=1, repeatinterval=10)
+        left_button = tk.Button(root, text="left", command=self.left,
                                 repeatdelay=1, repeatinterval=10)
-        up_button = tk.Button(root, text="up", command=up,
+        up_button = tk.Button(root, text="up", command=self.up,
                               repeatdelay=1, repeatinterval=10)
-        down_button = tk.Button(root, text="down", command=down,
+        down_button = tk.Button(root, text="down", command=self.down,
                                 repeatdelay=1, repeatinterval=10)
         maru_button.grid(row=1, column=1, padx=50,
                          pady=5, columnspan=2, rowspan=2)
@@ -63,8 +63,10 @@ class Controller:
             return maru_array
         elif self.mark == "batsu":
             return batsu_array
+        else:
+            return False
 
     def can_move(self, frame_shape, mark_shape):
         upper_left = [self.x_offset, self.y_offset]
         lower_right = [self.x_offset + mark_shape[0], self.y_offset + mark_shape[1]]
-        upper_left[0] < 0 or upper_left[1] < 0
+        return upper_left[0] < 0 or upper_left[1] < 0 or lower_right[0] > frame_shape[0] or lower_right[1] > frame_shape[1]

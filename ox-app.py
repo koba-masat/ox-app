@@ -30,11 +30,11 @@ with pyvirtualcam.Camera(width=frame.shape[1], height=frame.shape[0], fps=30) as
         ret, frame = cap.read()
 
         marubatsu_array = controller.mark_chage(maru_array, batsu_array)
-
-        if controller.can_move([frame.shape[0], frame.shape[1]],
-                             [marubatsu_array.shape[0], marubatsu_array.shape[1]]):
-            frame[y_offset: y_offset + marubatsu_array.shape[0],
-                  x_offset: x_offset + marubatsu_array.shape[1]] = marubatsu_array
+        if controller.mark == "maru" or controller.mark == "batsu":
+            if controller.can_move([frame.shape[0], frame.shape[1]],
+                                [marubatsu_array.shape[0], marubatsu_array.shape[1]]):
+                frame[y_offset: y_offset + marubatsu_array.shape[0],
+                    x_offset: x_offset + marubatsu_array.shape[1]] = marubatsu_array
 
         frame = np.flip(frame, 2)
         # 画像を仮想カメラに流す
